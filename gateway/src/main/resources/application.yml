@@ -1,0 +1,69 @@
+server:
+  port: 8090
+
+DECORATE-SERVICE:
+  ribbon:
+    eureka:
+      enabled: true
+    listOfServers: http://127.0.0.1:8093,http://127.0.0.1:8083
+    ServerListRefreshInterval: 15000
+
+
+
+hystrix:
+  command:
+    fallbackcmd:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 4000
+spring:
+  application:
+    name: GATEWAY
+  zipkin:
+    base-url: http://127.0.0.1:9411/
+  cloud:
+    gateway:
+      routes:
+        - id: NOTE-SERVICE
+          uri: lb://NOTE-SERVICE
+          predicates:
+            - Path=/notes/**
+        - id: USER-SERVICE
+          uri: lb://USER-SERVICE
+          predicates:
+            - Path=/users/**
+          filters:
+            - name: CircuitBreaker
+              args:
+                name: USER-SERVICE
+                fallbackuri: forward:/UserServiceFallBack
+        - id: DECORATE-SERVICE
+          uri: lb://DECORATE-SERVICE
+          predicates:
+            - Path=/decorate/**
+        - id: NOTE-ADD-SERVICE
+          uri: lb://NOTE-ADD-SERVICE
+          predicates:
+            - Path=/post/**
+          filters:
+            - name: CircuitBreaker
+              args:
+                name: NOTE-ADD-SERVICE
+                fallbackuri: forward:/AddNoteFallBack
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8088/eureka/,http://localhost:9099/eureka/
+    instance:
+      hostname: localhost
+      preferIpAddress: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: hystrix.stream

@@ -1,0 +1,80 @@
+spring:
+  application:
+    name: DECORATE-SERVICE
+  zipkin:
+    base-url: http://127.0.0.1:9411/
+---
+spring:
+  profiles: zone1
+eureka:
+  instance:
+    metadata-map:
+      zone: zone1
+    hostname: localhost
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8088/eureka/,http://localhost:9099/eureka/
+server:
+  port: 8093
+---
+spring:
+  profiles: zone2
+eureka:
+  instance:
+    metadata-map:
+      zone: zone2
+    hostname: localhost
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8088/eureka/,http://localhost:9099/eureka/
+server:
+  port: 8083
+---
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#server:
+#  port: 8093
+#
+#
+#spring:
+#  application:
+#    name: DECORATE-SERVICE
+##  zipkin:
+##    base-url: http://127.0.0.1:9411/
+#
+#eureka:
+#  client:
+#    register-with-eureka: true
+#    fetch-registry: true
+#    service-url:
+#      defaultZone: http://localhost:8088/eureka/
+#    instance:
+#      hostname: localhost
+#      preferIpAddress: true
