@@ -1,0 +1,94 @@
+services:
+  service-registry_1:
+    image: service-registry:latest
+    networks:
+      - net
+    ports:
+      - 8088:8088
+    environment:
+      - "SPRING_PROFILES_ACTIVE=zone1"
+
+  service-registry_2:
+    image: service-registry:latest
+    networks:
+      - net
+    depends_on:
+      - service-registry_1
+    ports:
+      - 9099:9099
+    environment:
+      - "SPRING_PROFILES_ACTIVE=zone2"
+
+  gateway:
+    image: gateway:latest
+    ports:
+      - 8090:8090
+    networks:
+      - net
+    environment:
+      - "EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://host.docker.internal:8088/eureka"
+      - "EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://host.docker.internal:9099/eureka"
+
+  note:
+    image: note:latest
+    ports: 
+      - 8091:8091
+    networks:
+      - net
+
+  user:
+    image: user:latest
+    ports:
+      - 8092:8092
+    networks:
+      - net
+
+  add-note-service:
+    image: add-note-service:latest
+    ports:
+      - 8094:8094
+    networks:
+      - net
+
+  decorate_1:
+    image: decorate:latest
+    ports:
+      - 8093:8093
+    environment:
+      - "SPRING_PROFILES_ACTIVE=zone1"
+    networks:
+      - net
+  
+  decorate_2:
+    image: decorate:latest
+    ports:
+      - 8083:8083
+    environment:
+      - "SPRING_PROFILES_ACTIVE=zone2"
+    networks:
+      - net
+
+  hystrix-dashboard:
+    image: hystrix-dashboard:latest
+    ports:
+      - 3000:3000
+    networks:
+      - net
+
+  rabbitmq:
+    image: rabbitmq:latest
+    ports:
+      - 5672:5672
+    networks:
+      - net
+
+  zipkin:
+    image: openzipkin/zipkin:latest
+    ports:
+      - 9411:9411
+    networks:
+      - net
+
+networks:
+  net:
+    driver: bridge

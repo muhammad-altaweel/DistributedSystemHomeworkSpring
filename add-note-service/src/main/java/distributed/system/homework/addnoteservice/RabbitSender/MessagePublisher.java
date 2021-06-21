@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
+//import java.util.concurrent.Future;
+
 
 @RestController
 @RequestMapping("/post")
@@ -26,7 +28,8 @@ public class MessagePublisher {
     @PostMapping("/")
     public String publishMessage(@RequestBody Note note) {
         SendToRabbit(note);
-        return "Message Published";
+
+        return getUser(note.getUserId());
     }
     @Async
     public void SendToRabbit(Note note)

@@ -22,6 +22,6 @@ public class User {
     private String userName;
     @Override
     public String toString(){
-        return "User ID: " + this.userId + "   \n" +"User NAME:" + this.userName +"\n";
+        return "User ID: " + this.userId + "   \n" +"User NAME: " + this.userName +"\n";
     }
 }

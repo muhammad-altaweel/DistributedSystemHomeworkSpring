@@ -13,7 +13,7 @@ eureka:
     register-with-eureka: true
     fetch-registry: true
     service-url:
-      defaultZone: http://localhost:8088/eureka/,http://localhost:9099/eureka/
+      defaultZone: http://host.docker.internal:8088/eureka/,http://host.docker.internal:9099/eureka/
     instance:
-      hostname: localhost
+      hostname: host.docker.internal
       preferIpAddress: true
