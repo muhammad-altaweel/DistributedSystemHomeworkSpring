@@ -23,6 +23,8 @@ services:
     image: gateway:latest
     ports:
       - 8090:8090
+    depends_on:
+      - service-registry_1
     networks:
       - net
     environment:
@@ -33,6 +35,8 @@ services:
     image: note:latest
     ports: 
       - 8091:8091
+    depends_on:
+      - service-registry_1
     networks:
       - net
 
@@ -40,11 +44,15 @@ services:
     image: user:latest
     ports:
       - 8092:8092
+    depends_on:
+      - service-registry_1
     networks:
       - net
 
   add-note-service:
     image: add-note-service:latest
+    depends_on:
+      - service-registry_1
     ports:
       - 8094:8094
     networks:
@@ -52,6 +60,8 @@ services:
 
   decorate_1:
     image: decorate:latest
+    depends_on:
+      - service-registry_1
     ports:
       - 8093:8093
     environment:
@@ -61,6 +71,8 @@ services:
   
   decorate_2:
     image: decorate:latest
+    depends_on:
+      - service-registry_1
     ports:
       - 8083:8083
     environment:
@@ -70,6 +82,8 @@ services:
 
   hystrix-dashboard:
     image: hystrix-dashboard:latest
+    depends_on:
+      - service-registry_1
     ports:
       - 3000:3000
     networks:
@@ -77,6 +91,8 @@ services:
 
   rabbitmq:
     image: rabbitmq:latest
+    depends_on:
+      - service-registry_1
     ports:
       - 5672:5672
     networks:
@@ -84,6 +100,8 @@ services:
 
   zipkin:
     image: openzipkin/zipkin:latest
+    depends_on:
+      - service-registry_1
     ports:
       - 9411:9411
     networks:
