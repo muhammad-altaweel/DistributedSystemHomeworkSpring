@@ -23,7 +23,7 @@ public class NoteController {
 //    }
 
     @GetMapping("/{noteId}")
-    public Note findNoteById(@PathVariable Long noteId){
+    public Note findNoteById(@PathVariable Long noteId) {
         return noteService.findNoteById(noteId);
     }
 }

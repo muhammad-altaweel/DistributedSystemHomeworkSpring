@@ -11,13 +11,13 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/decorate")
 @Slf4j
 public class DecorateController {
-//    @Value("${spring.profiles}")
+    //    @Value("${spring.profiles}")
 //    public String zone;
     @LoadBalanced
     @PostMapping("/")
-    public Note Decorate(@RequestBody Note note){
+    public Note Decorate(@RequestBody Note note) {
         String s = note.getNoteContent();
-        s = "{\n" + s +"\n}";
+        s = "{\n" + s + "\n}";
         note.setNoteContent(s);
         System.out.println(note);
         return note;

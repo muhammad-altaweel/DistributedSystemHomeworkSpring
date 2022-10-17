@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class AddNoteFallBackController {
     @PostMapping("/AddNoteFallBack")
-    public String addNoteFallBackMethode(){
+    public String addNoteFallBackMethode() {
         return "The Add Note Service Currently Unavailable";
     }
 }

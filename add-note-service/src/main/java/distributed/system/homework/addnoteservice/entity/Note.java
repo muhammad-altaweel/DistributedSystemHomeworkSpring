@@ -16,8 +16,9 @@ public class Note {
     private Long userId;
     private Date createDate;
     private Date modifyDate;
+
     @Override
-    public String toString(){
-        return "Note Id" + noteId + "\nuserId"+userId+"\nnoteContent:" + noteContent;
+    public String toString() {
+        return "Note Id" + noteId + "\nuserId" + userId + "\nnoteContent:" + noteContent;
     }
 }

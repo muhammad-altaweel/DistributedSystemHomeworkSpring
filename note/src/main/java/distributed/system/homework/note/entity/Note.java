@@ -1,7 +1,6 @@
 package distributed.system.homework.note.entity;
 
 
-
 import lombok.Data;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
@@ -27,8 +26,9 @@ public class Note {
 
     @UpdateTimestamp
     private Date modifyDate;
+
     @Override
-    public String toString(){
-        return "Note Id" + noteId + "\nuserId"+userId+"\nnoteContent:" + noteContent;
+    public String toString() {
+        return "Note Id" + noteId + "\nuserId" + userId + "\nnoteContent:" + noteContent;
     }
 }

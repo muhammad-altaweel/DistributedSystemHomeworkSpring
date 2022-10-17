@@ -1,7 +1,6 @@
 package distributed.system.homework.user.entity;
 
 
-
 import lombok.Data;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
@@ -20,8 +19,13 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long userId;
     private String userName;
+
     @Override
-    public String toString(){
-        return "User ID: " + this.userId + "   \n" +"User NAME: " + this.userName +"\n";
+    public String toString() {
+        return "User ID: " +
+                this.userId +
+                "   \n" + "User NAME: " +
+                this.userName +
+                "\n";
     }
 }

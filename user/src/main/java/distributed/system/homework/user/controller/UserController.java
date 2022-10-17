@@ -16,13 +16,12 @@ public class UserController {
     private UserService userService;
 
     @PostMapping("/")
-    public User saveUser(@RequestBody User user)
-    {
+    public User saveUser(@RequestBody User user) {
         return userService.saveUser(user);
     }
 
     @GetMapping("/{userId}")
-    public String findUserById(@PathVariable Long userId){
+    public String findUserById(@PathVariable Long userId) {
         return userService.findUserById(userId).toString();
     }
 }

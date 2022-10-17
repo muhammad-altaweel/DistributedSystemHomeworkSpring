@@ -14,7 +14,7 @@ public class MessageListener {
     @RabbitListener(queues = MQConfig.QUEUE)
     public void saveNote(Note note) {
         System.out.println(note);
-        Note addedNote=noteService.decorateAndSave(note);
+        Note addedNote = noteService.decorateAndSave(note);
         System.out.println();
     }
 

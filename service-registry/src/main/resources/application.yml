@@ -20,7 +20,7 @@ eureka:
       zone: zone1
     hostname: host.docker.internal
   server:
-#    wait-time-in-ms-when-sync-empty: 0
+    #    wait-time-in-ms-when-sync-empty: 0
     eviction-interval-timer-in-ms: 3000
   client:
     register-with-eureka: true
@@ -38,7 +38,7 @@ eureka:
       zone: zone2
     hostname: host.docker.internal
   server:
-#    wait-time-in-ms-when-sync-empty: 0
+    #    wait-time-in-ms-when-sync-empty: 0
     eviction-interval-timer-in-ms: 3000
   client:
     register-with-eureka: true

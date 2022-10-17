@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class UserFallBackController {
     @GetMapping("/UserServiceFallBack")
-    public String userServiceFallBackMethode(){
+    public String userServiceFallBackMethode() {
         return "The User Service Currently Unavailable";
     }
 }

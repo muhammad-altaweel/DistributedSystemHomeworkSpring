@@ -13,19 +13,19 @@ public class NoteService {
     @Autowired
     private RestTemplate restTemplate;
 
-    public Note saveNote(Note note){
+    public Note saveNote(Note note) {
         return noteRepository.save(note);
     }
 
-    public Note findNoteById(Long noteId){
+    public Note findNoteById(Long noteId) {
         return noteRepository.findById(noteId).get();
     }
 
-    public Note decorateAndSave(Note note){
+    public Note decorateAndSave(Note note) {
         Note decoratedNote = restTemplate.postForObject(
                 "http://DECORATE-SERVICE/decorate/"
-                ,note
-                ,Note.class);
+                , note
+                , Note.class);
         return saveNote(decoratedNote);
     }
 

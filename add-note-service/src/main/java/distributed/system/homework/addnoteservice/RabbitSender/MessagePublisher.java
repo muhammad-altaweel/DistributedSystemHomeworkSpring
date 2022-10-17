@@ -31,17 +31,18 @@ public class MessagePublisher {
 
         return getUser(note.getUserId());
     }
+
     @Async
-    public void SendToRabbit(Note note)
-    {
+    public void SendToRabbit(Note note) {
         template.convertAndSend(MQConfig.EXCHANGE,
                 MQConfig.ROUTING_KEY, note);
     }
+
     @Async
-    public String getUser(Long id){
+    public String getUser(Long id) {
         return restTemplate.getForObject(
-                "http://USER-SERVICE/users/"+id.toString()
-                ,String.class);
+                "http://USER-SERVICE/users/" + id.toString()
+                , String.class);
     }
 
 }
